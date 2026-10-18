@@ -1,5 +1,7 @@
 # Omarchy Hold'em
 
+![Omarchy Hold'em screenshot](screenshot.png)
+
 No-limit Texas Hold'em as a native Omarchy shell plugin. Five seats at a
 felt table — you in the bottom seat, up to four bots with their own tempers
 filling the rest — with the dealer's deck, blinds, side pots and showdowns
@@ -31,7 +33,7 @@ Or with the installer, which does the same thing and places the bar icon:
 Then click the ♠ in the bar, or bind a key to:
 
 ```bash
-omarchy-shell shell toggle nosignal.omarchyholdem
+omarchy-shell shell toggle cfryerdev.omarchyholdem
 ```
 
 `install.sh` takes two optional overrides: `HOLDEM_SECTION` picks the bar
@@ -41,7 +43,7 @@ registers the plugin from a fork instead.
 ## Removal
 
 ```bash
-omarchy plugin remove nosignal.omarchyholdem
+omarchy plugin remove cfryerdev.omarchyholdem
 ```
 
 That unregisters the plugin and drops its bar icon. The saved session is left
@@ -71,6 +73,9 @@ and five on the board. Every value on the table is in dollars.
 The buttons do the same thing. Min / ½ pot / Pot / All-in size the raise for
 you; the − and + keys step it by a big blind.
 
+The cream chip beside a seat is the **button** — it rotates one seat each
+hand and decides who posts the blinds and when the betting reaches you.
+
 Bots that lose their last chip are eliminated and their seat goes dark. Lose
 all yours and the session is over; take every chip on the table and it's
 yours.
@@ -97,7 +102,7 @@ piece of plumbing needs **`jq`**, which Omarchy already installs: see below.
 ## Developing it
 
 Edit, then `./scripts/local_publish.sh` — it runs the engine test suite,
-rsyncs the repo into `~/.config/omarchy/plugins/nosignal.omarchyholdem`
+rsyncs the repo into `~/.config/omarchy/plugins/cfryerdev.omarchyholdem`
 (exactly, deleting anything stale) and restarts the shell. `--no-restart`
 syncs only; `--no-tests` skips the suite. No hot reload either way — the
 restart is what loads new QML.
@@ -107,7 +112,7 @@ restart is what loads new QML.
 - `~/.local/state/omarchy-holdem/state.json` — the session: stacks, the hand
   in progress, and the running stats. Written after every action.
 - `~/.config/omarchy/shell.json` — **on first open**, the plugin appends its
-  own `{"id": "nosignal.omarchyholdem"}` entry to `plugins[]` if one is not
+  own `{"id": "cfryerdev.omarchyholdem"}` entry to `plugins[]` if one is not
   already there, using `jq`. This is a workaround: `omarchy plugin enable`
   writes only the bar-layout entry for a plugin that is both a panel and a
   bar widget, so without that entry the keybinding stops working the moment
@@ -145,11 +150,11 @@ documented there.
 
 ## Credits
 
-Omarchy Hold'em began as [Quattrolitaire](https://github.com/28allday/Quattrolitaire),
-**Gavin Nugent**'s Klondike solitaire plugin for omarchy-shell — the game is
-his, and this one keeps his plugin skeleton, his theme plumbing, his
-drawn-with-Behaviours card architecture, and his art-deco car deck. The
-solitaire gave the table its soul; it just turned out the table wanted to
+This game is based off **nosignal's Quattrolitaire** — their Quattrolitaire plugin
+([github.com/28allday/Quattrolitaire](https://github.com/28allday/Quattrolitaire)),
+a Klondike solitaire for omarchy-shell by Gavin Nugent. The plugin skeleton,
+theme plumbing, card architecture and art-deco car deck are all his; the
+solitaire gave the table its soul, it just turned out the table wanted to
 deal poker.
 
 ## Licence
