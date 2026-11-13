@@ -16,11 +16,11 @@
 #   3. Restarts omarchy-shell to load the new QML.
 #
 # Overrides:
-#   HOLDEM_DEST=/path/to/plugins/nosignal.omarchyholdem   where it publishes
+#   HOLDEM_DEST=/path/to/plugins/cfryerdev.omarchyholdem   where it publishes
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DEST="${HOLDEM_DEST:-$HOME/.config/omarchy/plugins/nosignal.omarchyholdem}"
+DEST="${HOLDEM_DEST:-$HOME/.config/omarchy/plugins/cfryerdev.omarchyholdem}"
 RUN_TESTS=1
 RESTART=1
 
@@ -51,8 +51,8 @@ if [ "$RESTART" = 1 ]; then
   say "==> Restarting omarchy-shell"
   omarchy-restart-shell
   say ""
-  say "Done. Click the ♠ in the bar, or:"
-  say "  omarchy-shell shell toggle nosignal.omarchyholdem"
+  say "Done. Click the card icon in the bar, or:"
+  say "  omarchy-shell shell toggle cfryerdev.omarchyholdem"
 else
   say ""
   say "Done (no restart). Pick it up with:"

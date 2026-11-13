@@ -20,7 +20,10 @@ set -euo pipefail
 
 REPO="${HOLDEM_REPO:-cfryerdev/OmarchyPoker}"
 SECTION="${HOLDEM_SECTION:-right}"
-PLUGIN_ID="nosignal.omarchyholdem"
+PLUGIN_ID="cfryerdev.omarchyholdem"
+# The plugin shipped as nosignal.omarchyholdem before 0.3.0; that id is
+# retired on the marketplace, so migrate any old registration aside.
+LEGACY_ID="nosignal.omarchyholdem"
 
 say() { printf '%s\n' "$*"; }
 
@@ -29,8 +32,13 @@ if ! command -v omarchy >/dev/null 2>&1; then
   exit 1
 fi
 
-# Already installed? Then this is an update, not an install.
-if omarchy plugin list 2>/dev/null | grep -q "^${PLUGIN_ID}[[:space:]]"; then
+# Already installed under the retired id? Then this is an update that also
+# finishes the 0.3.0 rename: swap the registration, keeping the bar section.
+if omarchy plugin list 2>/dev/null | grep -q "^${LEGACY_ID}[[:space:]]"; then
+  say "==> ${LEGACY_ID} is installed; migrating it to ${PLUGIN_ID}"
+  omarchy plugin remove "$LEGACY_ID" --yes
+  omarchy plugin add "https://github.com/${REPO}" --yes
+elif omarchy plugin list 2>/dev/null | grep -q "^${PLUGIN_ID}[[:space:]]"; then
   say "==> ${PLUGIN_ID} is already installed; updating"
   omarchy plugin update "$PLUGIN_ID"
 else
@@ -51,5 +59,5 @@ omarchy plugin enable "$PLUGIN_ID" --section "$SECTION" || true
 omarchy bar move "$PLUGIN_ID" --section "$SECTION" >/dev/null 2>&1 || true
 
 say ""
-say "Done. Click the ♠ in the bar, or bind a key to:"
+say "Done. Click the card icon in the bar, or bind a key to:"
 say "  omarchy-shell shell toggle ${PLUGIN_ID}"

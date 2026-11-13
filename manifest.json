@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "nosignal.omarchyholdem",
+  "id": "cfryerdev.omarchyholdem",
   "name": "Omarchy Hold'em",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "cfryerdev",
   "license": "MIT",
-  "description": "No-limit Texas Hold'em for omarchy-shell. Six seats at a felt table — you against up to five bots with their own tempers — with blinds, side pots and showdowns, all coloured from the active theme. Summon with: omarchy-shell shell toggle nosignal.omarchyholdem",
+  "description": "No-limit Texas Hold'em for omarchy-shell. Six seats at a felt table — you against up to five bots with their own tempers — with blinds, side pots and showdowns, all coloured from the active theme. Summon with: omarchy-shell shell toggle cfryerdev.omarchyholdem",
   "kinds": [
     "panel",
     "bar-widget"

@@ -1,22 +1,23 @@
-# NOTES — Omarchy Hold'em (nosignal.omarchyholdem)
+# NOTES — Omarchy Hold'em (cfryerdev.omarchyholdem)
 
 Working notes for this repo. Read before changing anything in `poker.js` or
 `Panel.qml`.
 
 ## Status
 
-**0.2.0, untagged.** Playable. This was Quattrolitaire (Klondike solitaire)
+**0.3.0, untagged.** Playable. This was Quattrolitaire (Klondike solitaire)
 by Gavin Nugent — the repo now belongs to **cfryerdev** with the game swapped
 for no-limit Texas Hold'em; Gavin's original lives at the public
 `28allday/Quattrolitaire`, and the README credits the origin. No release is
-tagged yet.
+tagged yet. 0.3.0 moves the plugin id from `nosignal.omarchyholdem` to
+`cfryerdev.omarchyholdem` (see Plugin plumbing).
 
 The engine's test suite runs in node: `node tests/poker-test.js`. Run it
 after touching `poker.js` — it has already caught a conservation bug the
 fun way.
 
 Installed here as a dev copy/symlink under
-`~/.config/omarchy/plugins/nosignal.omarchyholdem`, enabled in the right bar
+`~/.config/omarchy/plugins/cfryerdev.omarchyholdem`, enabled in the right bar
 section — so **no hot reload**: `omarchy-restart-shell` after every QML edit,
 and never `omarchy-refresh-shell`, which resets `shell.json`.
 
@@ -138,7 +139,7 @@ ticker writes cards as letters (`Kh 9s 4d`).
 ## Plugin plumbing
 
 - **Dev loop is `./scripts/local_publish.sh`**: tests, rsync to
-  `~/.config/omarchy/plugins/nosignal.omarchyholdem`, shell restart.
+  `~/.config/omarchy/plugins/cfryerdev.omarchyholdem`, shell restart.
   `--no-restart` / `--no-tests` flags exist; `HOLDEM_DEST` moves the target.
 - `panel` + `bar-widget`, so it carries the usual `ensureSelfReference()`
   workaround: `omarchy plugin enable` writes only the bar layout entry, and
@@ -148,14 +149,21 @@ ticker writes cards as letters (`Kh 9s 4d`).
   removed and the new one added; a stray old bar icon means the shell still
   has the old id in `shell.json` — remove it with
   `omarchy plugin remove nosignal.quattrolitaire`.
+- Renamed the plugin id again in 0.3.0, from `nosignal.omarchyholdem` to
+  `cfryerdev.omarchyholdem` — the id was inherited from the fork and the
+  marketplace lists plugins under their manifest id, so the listing wore
+  someone else's name. Plugin ids are permanent marketplace identifiers: the
+  old listing has to be retired and the new one submitted fresh. `install.sh`
+  migrates an old registration automatically; a manual migration is
+  `omarchy plugin remove nosignal.omarchyholdem` then re-add the repo.
 - Installed as a dev copy for testing, which means **no hot reload** —
   `omarchy-restart-shell` after every QML edit. Never `omarchy-refresh-shell`.
 
 ## Screenshots
 
-`screenshots/table.jpg` and `preview.jpg` still show the solitaire table this
-plugin used to be; they need retaking against the poker felt. The README
-deliberately does not embed them until they are real.
+`preview.png` is the marketplace preview — the root file the marketplace
+picks up when it builds the listing's card and detail images. It shows the
+poker felt with the current card-icon title mark.
 
 ## Ideas, not committed to
 

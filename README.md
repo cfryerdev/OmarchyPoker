@@ -1,6 +1,6 @@
 # Omarchy Hold'em
 
-![Omarchy Hold'em screenshot](screenshot.png)
+![Omarchy Hold'em screenshot](preview.png)
 
 No-limit Texas Hold'em as a native Omarchy shell plugin. Five seats at a
 felt table — you in the bottom seat, up to four bots with their own tempers
@@ -30,7 +30,7 @@ Or with the installer, which does the same thing and places the bar icon:
 ./install.sh
 ```
 
-Then click the ♠ in the bar, or bind a key to:
+Then click the card icon in the bar, or bind a key to:
 
 ```bash
 omarchy-shell shell toggle cfryerdev.omarchyholdem
@@ -39,6 +39,15 @@ omarchy-shell shell toggle cfryerdev.omarchyholdem
 `install.sh` takes two optional overrides: `HOLDEM_SECTION` picks the bar
 section (`left`, `center` or `right`, default `right`), and `HOLDEM_REPO`
 registers the plugin from a fork instead.
+
+Installed the plugin before 0.3.0? It was registered as
+`nosignal.omarchyholdem` then; `install.sh` migrates the old registration for
+you, or do it by hand:
+
+```bash
+omarchy plugin remove nosignal.omarchyholdem
+omarchy plugin add https://github.com/cfryerdev/OmarchyPoker --enable
+```
 
 ## Removal
 
@@ -135,6 +144,7 @@ directory.
 | `poker.js` | The whole engine: dealing, betting, side pots, bots, hand ranks |
 | `tests/poker-test.js` | Node test suite for the engine |
 | `scripts/local_publish.sh` | Dev loop: tests, then rsync to the local plugin install, then shell restart |
+| `preview.png` | Preview image the plugin marketplace shows on the listing |
 | `cards/` | The deck: 52 faces, a shared back, and the felt tile |
 | `BarWidget.qml` | Bar icon; toggles the panel over shell IPC |
 | `~/.local/state/omarchy-holdem/state.json` | Saved session and stats |

@@ -8,7 +8,7 @@ import qs.Ui
 import "poker.js" as Poker
 
 // Texas Hold'em for omarchy-shell. Summoned/toggled through the shell host:
-//   omarchy-shell shell toggle nosignal.omarchyholdem
+//   omarchy-shell shell toggle cfryerdev.omarchyholdem
 // The host calls open(payloadJson) / close() and reads `opened`; it also
 // injects `shell` right after the Loader resolves (see onShellChanged).
 //
@@ -35,7 +35,7 @@ Item {
 
     property bool opened: false
 
-    readonly property string selfId: "nosignal.omarchyholdem"
+    readonly property string selfId: "cfryerdev.omarchyholdem"
 
     // Injected by the shell host after the Loader resolves. Used to keep the
     // host's open-flag honest on close(), and to self-restore if the host's
@@ -66,6 +66,10 @@ Item {
     // text runs blue-white on some themes and reads cold against the felt.
     readonly property color gold: "#d9b45a"
     readonly property color cream: "#f0e7d4"
+
+    // nf-md-cards_playing (U+F18A1): the title's card mark, matching the bar
+    // widget so the game never shows the spade it shares with its fork.
+    readonly property string cardMark: "\uDB86\uDCA1"
 
     function mix(a, b, t) {
         var bb = typeof b === "string" ? Qt.color(b) : b;
@@ -936,7 +940,7 @@ Item {
                     id: title
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "♠  Omarchy Hold'em"
+                    text: root.cardMark + "  Omarchy Hold'em"
                     color: root.gold
                     font.family: root.fontFamily
                     font.pixelSize: Style.font.title
@@ -1595,7 +1599,7 @@ Item {
 
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
-                                text: "♠  Omarchy Hold'em"
+                                text: root.cardMark + "  Omarchy Hold'em"
                                 color: root.gold
                                 font.family: root.fontFamily
                                 font.pixelSize: Style.font.heading
