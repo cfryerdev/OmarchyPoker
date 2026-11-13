@@ -21,7 +21,7 @@ set -euo pipefail
 REPO="${HOLDEM_REPO:-cfryerdev/OmarchyPoker}"
 SECTION="${HOLDEM_SECTION:-right}"
 PLUGIN_ID="cfryerdev.omarchyholdem"
-# The plugin shipped as nosignal.omarchyholdem before 0.3.0; that id is
+# The plugin shipped as nosignal.omarchyholdem before 1.0.0; that id is
 # retired on the marketplace, so migrate any old registration aside.
 LEGACY_ID="nosignal.omarchyholdem"
 
@@ -33,7 +33,7 @@ if ! command -v omarchy >/dev/null 2>&1; then
 fi
 
 # Already installed under the retired id? Then this is an update that also
-# finishes the 0.3.0 rename: swap the registration, keeping the bar section.
+# finishes the 1.0.0 rename: swap the registration, keeping the bar section.
 if omarchy plugin list 2>/dev/null | grep -q "^${LEGACY_ID}[[:space:]]"; then
   say "==> ${LEGACY_ID} is installed; migrating it to ${PLUGIN_ID}"
   omarchy plugin remove "$LEGACY_ID" --yes

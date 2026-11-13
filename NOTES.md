@@ -5,12 +5,12 @@ Working notes for this repo. Read before changing anything in `poker.js` or
 
 ## Status
 
-**0.3.0, untagged.** Playable. This was Quattrolitaire (Klondike solitaire)
+**1.0.0, tagged `v1.0.0`.** Playable. This was Quattrolitaire (Klondike solitaire)
 by Gavin Nugent — the repo now belongs to **cfryerdev** with the game swapped
 for no-limit Texas Hold'em; Gavin's original lives at the public
-`28allday/Quattrolitaire`, and the README credits the origin. No release is
-tagged yet. 0.3.0 moves the plugin id from `nosignal.omarchyholdem` to
-`cfryerdev.omarchyholdem` (see Plugin plumbing).
+`28allday/Quattrolitaire`, and the README credits the origin. 1.0.0 moves the
+plugin id from `nosignal.omarchyholdem` to `cfryerdev.omarchyholdem`
+(see Plugin plumbing) and ships the marketplace preview.
 
 The engine's test suite runs in node: `node tests/poker-test.js`. Run it
 after touching `poker.js` — it has already caught a conservation bug the
@@ -149,7 +149,7 @@ ticker writes cards as letters (`Kh 9s 4d`).
   removed and the new one added; a stray old bar icon means the shell still
   has the old id in `shell.json` — remove it with
   `omarchy plugin remove nosignal.quattrolitaire`.
-- Renamed the plugin id again in 0.3.0, from `nosignal.omarchyholdem` to
+- Renamed the plugin id again in 1.0.0, from `nosignal.omarchyholdem` to
   `cfryerdev.omarchyholdem` — the id was inherited from the fork and the
   marketplace lists plugins under their manifest id, so the listing wore
   someone else's name. Plugin ids are permanent marketplace identifiers: the

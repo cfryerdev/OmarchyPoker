@@ -40,7 +40,7 @@ omarchy-shell shell toggle cfryerdev.omarchyholdem
 section (`left`, `center` or `right`, default `right`), and `HOLDEM_REPO`
 registers the plugin from a fork instead.
 
-Installed the plugin before 0.3.0? It was registered as
+Installed the plugin before 1.0.0? It was registered as
 `nosignal.omarchyholdem` then; `install.sh` migrates the old registration for
 you, or do it by hand:
 
